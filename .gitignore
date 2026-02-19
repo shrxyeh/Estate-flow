@@ -34,3 +34,6 @@ dist-ssr
 vlayer/out/
 vlayer/cache/
 vlayer/broadcast/
+
+# Unused Vite boilerplate
+src/App.css
