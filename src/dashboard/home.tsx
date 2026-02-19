@@ -15,12 +15,6 @@ export default function Landing() {
   const particlesRef = useRef<any[]>([]);
   const animationFrameRef = useRef<number | null>(null);
 
-  // Debug wallet state
-  useEffect(() => {
-    console.log('🏠 Landing component state:', { isConnected, account });
-    console.log('🏠 Button should be:', !isConnected ? 'DISABLED' : 'ENABLED');
-  }, [isConnected, account]);
-
   // Mouse position tracking for particle system
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -234,16 +228,12 @@ export default function Landing() {
           <span className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105">EstateFlow</span>
         </div>
           
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3">
             {isConnected ? (
               <div className="flex items-center gap-2">
                 <WalletStatus />
                 <Button
-                  onClick={() => {
-                    // This will trigger disconnect through the useMetaMask hook
-                    console.log('🔌 Disconnecting wallet');
-                    disconnect();
-                  }}
+                  onClick={() => disconnect()}
                   variant="outline"
                   size="sm"
                   className="border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-300"
@@ -254,22 +244,16 @@ export default function Landing() {
             ) : (
               <MetaMaskButton />
             )}
-            <Button 
-              onClick={() => {
-                console.log('🔍 Header Button clicked. Connected:', isConnected, 'Account:', account);
-                navigate("/dashboard/my-deals");
-              }}
+            <Button
+              onClick={() => navigate("/dashboard/my-deals")}
               variant="outline"
               disabled={!isConnected}
               className="border-green-500/50 text-green-400 hover:bg-green-500/10 hover:text-green-300"
             >
               Buy A House
             </Button>
-            <Button 
-              onClick={() => {
-                console.log('🔍 Header Button clicked. Connected:', isConnected, 'Account:', account);
-                navigate("/dashboard/requests/new");
-              }}
+            <Button
+              onClick={() => navigate("/dashboard/requests/new")}
               disabled={!isConnected}
               className="bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700"
             >
@@ -303,10 +287,7 @@ export default function Landing() {
           <div className="mb-16">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                onClick={() => {
-                  console.log('🔍 Hero Button clicked. Connected:', isConnected, 'Account:', account);
-                  navigate("/dashboard/my-deals");
-                }}
+                onClick={() => navigate("/dashboard/my-deals")}
                 size="lg"
                 disabled={!isConnected}
                 className={isConnected 
@@ -318,10 +299,7 @@ export default function Landing() {
                 Buy A House
               </Button>
               <Button 
-                onClick={() => {
-                  console.log('🔍 Hero Button clicked. Connected:', isConnected, 'Account:', account);
-                  navigate("/dashboard/requests/new");
-                }}
+                onClick={() => navigate("/dashboard/requests/new")}
                 size="lg"
                 disabled={!isConnected}
                 variant="outline"
@@ -591,10 +569,7 @@ export default function Landing() {
             {!isConnected ? (
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
-                  onClick={() => {
-                    // This will trigger the MetaMask connection
-                    console.log('🔗 Prompting wallet connection from CTA');
-                  }}
+                  onClick={() => {}}
                   size="lg"
                   className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 hover:shadow-3xl hover:shadow-blue-500/40"
                 >
@@ -612,10 +587,7 @@ export default function Landing() {
             ) : (
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-                  onClick={() => {
-                    console.log('🚀 Navigating to main dashboard from CTA');
-                    window.location.href = "/dashboard/my-requests";
-                  }}
+                  onClick={() => navigate("/dashboard/my-requests")}
               size="lg"
                   className="bg-gradient-to-r from-purple-500 to-green-500 hover:from-purple-600 hover:to-green-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2 hover:shadow-3xl hover:shadow-purple-500/40"
             >
