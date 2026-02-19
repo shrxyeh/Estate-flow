@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+.vite/
+
+# Development files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+*.md
+DEPLOYMENT_GUIDE.md
+SEPOLIA_INTEGRATION_GUIDE.md
+MODULAR_INTEGRATION.md
+QUICK_START.md
+METAMASK_INTEGRATION_README.md
+
+# Contract deployment
+deploy-contract.cjs
+vlayer/
+yellow/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
