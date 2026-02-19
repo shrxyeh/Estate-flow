@@ -8,6 +8,8 @@ A decentralized peer-to-peer real estate lending platform on Ethereum. EstateFlo
 ![Ethereum](https://img.shields.io/badge/Sepolia_Testnet-627EEA?style=flat&logo=ethereum&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
 
+**Live Demo:** https://estate-flow-orpin.vercel.app
+
 ## What It Does
 
 Two types of users interact on the platform:
@@ -74,22 +76,33 @@ The dev server starts at `http://localhost:3000`. Connect MetaMask to Sepolia te
 
 ## Deploying Contracts
 
-Create a `.env` file in the root:
+Private keys should never be stored in plaintext files. Use Foundry's encrypted keystore instead:
 
-```
-PRIVATE_KEY=your_wallet_private_key
-SEPOLIA_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/your_key
-ETHERSCAN_API_KEY=your_etherscan_key
+```bash
+# Import your wallet once — stored AES-encrypted, password-protected locally
+cast wallet import deployer --interactive
+
+# Verify it was saved
+cast wallet list
 ```
 
-Then deploy and verify:
+Then deploy and verify using the named account:
 
 ```bash
 cd vlayer
 forge build
-forge script script/Deploy.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast
-forge verify-contract <address> src/EstateFlowContract.sol:EstateFlowContract --chain sepolia --etherscan-api-key $ETHERSCAN_API_KEY
+forge script script/Deploy.s.sol \
+  --rpc-url <your_sepolia_rpc_url> \
+  --account deployer \
+  --broadcast
+
+forge verify-contract <address> \
+  src/EstateFlowContract.sol:EstateFlowContract \
+  --chain sepolia \
+  --etherscan-api-key <your_etherscan_key>
 ```
+
+Foundry will prompt for your keystore password at runtime. The private key is never exposed in shell history, environment variables, or any file.
 
 ## License
 

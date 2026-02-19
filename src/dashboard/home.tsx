@@ -344,9 +344,6 @@ export default function Landing() {
                   ✅ Wallet connected! Buttons should be enabled.
                 </p>
               )}
-              <p className="text-xs text-gray-500 mt-2">
-                Debug: isConnected={isConnected ? 'true' : 'false'}, account={account ? 'exists' : 'null'}
-              </p>
             </div>
           </div>
 
